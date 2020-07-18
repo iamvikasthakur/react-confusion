@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,
-    CardTitle } from 'reactstrap';
+import React from 'react';
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
     function RenderDish(props) {
@@ -21,11 +22,11 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     }
 
     function RenderComments(props){
-        if(props.dish != null){
+        if(props.comments != null){
             return(
                 <div>
                     <h4>Comments</h4>
-                    {props.dish.comments.map((comment) => 
+                    {props.comments.map((comment) => 
                         (
                             <div className="list-unstyled">
                                 <li>{comment.comment}</li><br/>
@@ -44,18 +45,28 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     }
 
     const DishDetail = (props) => {
-        return(
+        return (
             <div className="container">
                 <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{props.dish.name}</h3>
+                        <hr />
+                    </div>                
+                </div>
+                <div className="row">
                     <div className="col-12 col-md-5 m-1">
-                        {RenderDish(props)}
+                        <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        {RenderComments(props)}
+                        <RenderComments comments={props.comments} />
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 
 
