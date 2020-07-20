@@ -16,21 +16,16 @@ import { Link } from 'react-router-dom';
         );
     }
 
-    const menu = props.dishes.map((dish) => {
-        return (
-            <div  className="col-12 col-md-5 m-1">
-            <Card key={dish.id}>
-                {/* <CardImg width="100%" src={dish.image} alt={dish.name} />
-                <CardImgOverlay>
-                    <CardTitle>{dish.name}</CardTitle>
-                </CardImgOverlay> */}
-                <RenderMenuItem dish={dish} />
-            </Card>
-            </div>
-        );
-    });
-
     const Menu = (props) => {
+
+        const menu = props.dishes.map((dish) => {
+            return (
+                <div className="col-12 col-md-5 m-1"  key={dish.id}>
+                    <RenderMenuItem dish={dish} />
+                </div>
+            );
+        });
+
         return (
             <div className="container">
                 <div className="row">
@@ -50,4 +45,4 @@ import { Link } from 'react-router-dom';
         );
     }
 
-export default Menu ;
+export default Menu;
